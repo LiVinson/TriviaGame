@@ -1,8 +1,11 @@
+
+/* Game Title */
 .jumbotron {
     padding-top: 35px;
     padding-bottom: 35px;
 }
 
+/*Game Box Padding */
 .panel-default,
 .panel-heading{
     padding-left: 0px;
@@ -13,4 +16,11 @@
 .panel-body{
     padding-left: 30px;
     padding-right: 30px;
+}
+
+/*Response Boxes */
+.choiceDivs{
+    width: fit-content;
+    padding-left:20px;
+    padding-right:20px;
 }

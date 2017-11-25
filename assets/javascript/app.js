@@ -8,17 +8,23 @@
 
     var gameStarted = false;
 
-    var triviaQuestions = {
+    var questionAsked = "";
 
-        question1: {  
+    var questionNumber = 0;
+
+    var choiceDivs = ["#ChoiceA", "#ChoiceB", "#ChoiceC", "#ChoiceD"]
+
+    var triviaQuestions = [ 
+
+        question1 = {  
             question: "When Ashley reveals to Will that she does not enjoy taking violin lessons, he pawns her violin in for a: ",
-            answer: "drum set",
-            wrongChoices: ["wrongChoice1", "wrongChoice2", "wrongChoice3"],
+            choices: ["drum set", "wrongChoice1", "wrongChoice2", "wrongChoice3"], //first choice is correct
+            choiceValues: [1, 0, 0, 0],
             display: "tbd",  //"Video clip of Jazz playing, will dancing",
             extraFact: "Will hired his friend Jazz, played by DJ Jazzy Jeff to teach Ashley how to play her new drum set"
         },
 
-        question2: { 
+        question2 = { 
             question: "While visiting, Uncle Phil’s mom reveals to Will over a game of cards that Uncle Phil’s nickname back in his country hometown is:",
             answer: "Zeke",
             wrongChoices: ["Philly", "Big Phil", "Sonny"],
@@ -27,7 +33,7 @@
 
         },
 
-        question3: {
+        question3 = {
             question: "Aiming to impress the girls in his poetry class, Will spontaneously makes up a poem called 'Tick Tock Clock' that he claims is written by a poet friend named:",
             answer: " Raphael de la Ghetto",
             wrongChoices: ["Jazzy Jeff", "TBD", "TBD"],
@@ -36,7 +42,7 @@
         
         },
   
-        question4: {
+        question4 = {
             question: "When Ashley is being bullied at school, Will and Carlton try to help by:",
             answer: "bribing the bully with $50",
             wrongChoices: ["telling a teacher", "switching Ashley’s class", "taking the bully on a date"],
@@ -44,7 +50,7 @@
             extraFact: "TBD"
         },
         
-        question5: {
+        question5 = {
             question: "Nervous about turning 40, Aunt Vivian enrolls in this type of class, surprising her much younger classmates with a star performance:",
             answer: "dance class",
             wrongChoices: ["singing lessons", "acting class", " modeling class"],
@@ -52,7 +58,7 @@
             extraFact: "Before being cast as Aunt Viv, Janet Huber studied at Julliard School and the Alvin Ailey Dance company"
         },
 
-        question6: {
+        question6 = {
             question: "Suing Uncle Phil for Will crashing into his car, Hilary’s boyfriend Eric, admits he didn’t have his this with him during the accident:",
             answer: "glasses",
             wrongChoices: ["license", "registration", "wallet"],
@@ -60,7 +66,7 @@
             extraFact: "TBD"
         },
 
-        question7: {
+        question7 = {
             question: "When Will wins $1,000 at a charity fundraiser, he refuses to donate the money to the designated charity and instead does what with his winnings?",
             answer: "Donates it to his friend Ramon who wanted to afford a way to basketball camp",
             wrongChoices: ["buys new speakers", "buys new shoes", "gives it to Ashley for singing lessons"],
@@ -68,7 +74,7 @@
             extraFact: "TBD"
         },
 
-        question8: {
+        question8 = {
             question: "When a Princeton recruiter comes to Will and Carl’s school for interviews, Will impresses the recruiter by doing what?",
             answer: "Solving a Rubik’s cube",
             wrongChoices: ["Reciting a rap", "Solving a complex math problem", "winning a debate with another student"],
@@ -76,7 +82,7 @@
             extraFact: "In the film Pursuit of Happyness, Will Smith plays a character that solves a rubiks cube and impresses a top executive who later hires him, a feat the actor can do in real life."
         },
   
-        question9: {
+        question9 = {
             question: "Worried that it might damage Uncle Phil’s reputation during his campaign for judge, Geoffrey confesses that he did this, causing him to go into hiding by moving to the U.S.",
             answer: "Cheating in an Olympic race by taking a taxi to the finish line",
             wrongChoices: ["stealing from a previous employer", "TBD", "TBD"],
@@ -84,7 +90,7 @@
             extraFact: "TBD"
         },
 
-        question10: {
+        question10 = {
             question: "Upset that she is being treated like a child, Ashley performs a version of this song on stage at a karoke event in front of her family:",
             answer: "Cheating in an Olympic race by taking a taxi to the finish line",
             wrongChoices: ["'Respect' by Aretha Franklin", "TBD", "TBD"],
@@ -92,29 +98,62 @@
             extraFact: "TBD"
         },
 
-    }
+    ];
 
+    
     function startGame(){
         console.log("Start game function!")
-    }
+        
+        questionAsked = triviaQuestions[questionNumber].question; //Select the next question from the triviaQuestion array
+
+
+        $("#questionDiv").html(questionAsked); //Disply question in DOM
+        console.log(questionNumber + ". " + questionAsked);
+        
+        //Display the questions and answers on the screen:
+
+        $("#choiceA").html(triviaQuestions[questionNumber].choices[0]);
+        $("#choiceADiv").attr("value", triviaQuestions[questionNumber].choiceValues[0]);
+
+        console.log("choiceAdiv value: " + $("#choiceADiv").attr("value"));
+
+        $("#choiceB").html(triviaQuestions[questionNumber].choices[1]);
+        $("#choiceBDiv").attr("value", triviaQuestions[questionNumber].choiceValues[1]);
+
+        $("#choiceC").html(triviaQuestions[questionNumber].choices[2]);
+        $("#choiceCDiv").attr("value", triviaQuestions[questionNumber].choiceValues[2]);
+
+        $("#choiceD").html(triviaQuestions[questionNumber].choices[3]);
+        $("#choiceDDiv").attr("value", triviaQuestions[questionNumber].choiceValues[3]);
+
+      
+        $(".choiceDivs").on("click", function(){
+                clickedValue = $(this).attr("value");
+                console.log(clickedValue);    
+                       
+                if (clickedValue == 1)
+                    console.log("That's correct");
+                else
+                    console.log("That's wrong!");
+        })
+
+    };
 
 
     //When the page loads:
     $(document).ready(function(){
-        $("#gamePanel").hide();
-            //Set the song to play
-        // $(themeSong).attr("src", "assets/images/themeSongFull.mp3");
-        // themeSong.play();
-
+        $("#gamePanel").hide(); //Hides the game panel; add steps to make it hide automatically. css?
+            //Add steps to set the song to play
+     
             //Select start button and when clicked run an anonymous callback function
         $("#startButton").on("click",function(){
-            gameStarted = true;
+            gameStarted = true; 
             console.log(startGame);
 
             if (gameStarted){
-                $("#instructionsPanel").hide();
-                $("#gamePanel").show();
-                startGame();        
+                $("#instructionsPanel").hide(); //Hide the instructions panel
+                $("#gamePanel").show(); //Show the game panel
+                startGame(); //Call the startGame Function (to be defined)
                 }
     
         });
