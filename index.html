@@ -9,21 +9,26 @@
     </head>
     
 <body>
-    <div class="container"> 
-        <!--Row 1: Header with Game Title:  -->
-    <div class="row">
-        <div class="jumbotron">
-            <h1>Fresh Prince of Bel-Air Trivia</h1>
-            <p> </p>
-        </div>
+
+<div class="container"> 
+
+<!--Row 1: Header with Game Title:  -->
+<div class="row">
+    <div class="jumbotron">
+        <h1>Fresh Prince of Bel-Air Trivia</h1>
+        <p> </p>
     </div>
+</div>
 
 
-        <!--Row 2: Instruction Screen Panel:  -->
-     <div class="row">
+<!--Row 2: Instruction Screen Panel/Game Panel + Time&Score Panel:  -->
+<div class="row">
            
-        
-        <div class="panel panel-default col-lg-12 col-md-12 col-sm-12 col-xs-12" id = "instructionsPanel">
+    <!--Column1: contains all main panels-->
+    <div class = "col-lg-8 col-md-8 col-sm-8 col-xs-12 mainPanel"> 
+
+        <!--Instructions Panel--> 
+        <div class="panel panel-default" id = "instructionsPanel">
             <div class="panel-heading">
                 <h3 class="panel-title">Instructions</h3>
             </div>
@@ -34,15 +39,9 @@
                 <button type="button" class="center-block btn btn-default" id = "startButton">Start Game</button>
             </div>
         </div>
-
-    </div>
-
-
-        <!--Row 3: Game Screen:  -->
-
-        <div class="row">
-                             
-            <div class="panel panel-default col-lg-12 col-md-12 col-sm-12 col-xs-12" id = "gamePanel">
+        
+        <!-- Game Panel -->   
+        <div class="panel panel-default" id = "gamePanel">
                 <div class="panel-heading">
                     <h3 class="panel-title">Question #</h3>
                 </div>
@@ -57,22 +56,48 @@
                         <div class="well well-sm choiceDivs" id="choiceDDiv" value="">D. <span id="choiceD"></span></div>
                     </div>          
 
-                    <div>Time Remaining</div>
+                </div>
+        </div>
 
-                 </div>
-             </div>
+        <!-- After Response Selected Panel --> 
+
+        <div class="panel panel-default" id = "afterResponse">
+                <div class="panel-heading">"
+                    <h3 class="panel-title"><span id = "gameMessage"></span></h3> <!--Add logic to update message depending on if response correct or not-->
+                </div>
      
-         </div>
-     
+                <div class="panel-body">
+                    <div><span id="questionInfoDiv"></span> </div> <!--Add logic to display message based on question not-->
+
+                <div class="imageDiv"></div><!--Add logic for an image or a gif-->     
+
+                </div>
+        </div>
 
 
 
-        <!--End of Game Screen:  -->
+    
+    </div> <!--End of Column1-->
 
 
+    <!-- Column 2: Score/Time Panel --> 
+        <div class="panel panel-default col-lg-4 col-md-4 col-sm-4 col-xs-12" id = "scorePanel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Score</h3>
+            </div>
 
+            <div class="panel-body">
+                <div>Time Remaining</div>
+                <div>Number Correct: <span></span></div>
+            </div>
 
-    </div>
+        </div>
+
+    <!--End of Game Screen:  -->
+
+    </div> <!--End of Row-->
+ 
+</div> <!--End of Container -->
 
 
     <!-- JQuery -->

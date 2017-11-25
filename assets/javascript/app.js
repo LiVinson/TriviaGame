@@ -6,21 +6,26 @@
 
     var themeSong = "tbd";//Create audio element, will assign src to theme song mp3 file
 
-    var gameStarted = false;
+    var gameStarted = false; //Div displayed changes based on true/false
 
-    var questionAsked = "";
+    var questionAsked = ""; //Will be assigned new value = to selected question and displyed
 
-    var questionNumber = 0;
+    var questionNumber = 0; //Will increase for each question asked
 
     var choiceDivs = ["#ChoiceA", "#ChoiceB", "#ChoiceC", "#ChoiceD"]
 
+    var numberCorrect = 0; //Will increase if answer is correct
+
+    var gameMessage = ""; //Will be reset based on if reply is correct or not
+
+    //Array containing an onject for each trivia question
     var triviaQuestions = [ 
 
         question1 = {  
             question: "When Ashley reveals to Will that she does not enjoy taking violin lessons, he pawns her violin in for a: ",
             choices: ["drum set", "wrongChoice1", "wrongChoice2", "wrongChoice3"], //first choice is correct
             choiceValues: [1, 0, 0, 0],
-            display: "tbd",  //"Video clip of Jazz playing, will dancing",
+            display: "<video controls autoplay loop><source src='assets/images/giphy.mp4' type='video/mp4'></video>",  //"src of Video clip of Jazz playing, will dancing",
             extraFact: "Will hired his friend Jazz, played by DJ Jazzy Jeff to teach Ashley how to play her new drum set"
         },
 
@@ -100,49 +105,80 @@
 
     ];
 
-    
+    //Defining fuction to choose a question, display on screen, listen for click, determine if correct question was chosen
     function startGame(){
         console.log("Start game function!")
+        $("#afterResponse").hide()
+        $("#gamePanel").show(); //Show the game panel
+
+
+        questionAsked = triviaQuestions[questionNumber]; //Select the next question from the triviaQuestion array
         
-        questionAsked = triviaQuestions[questionNumber].question; //Select the next question from the triviaQuestion array
-
-
-        $("#questionDiv").html(questionAsked); //Disply question in DOM
-        console.log(questionNumber + ". " + questionAsked);
+        $("#questionDiv").html(questionAsked.question); //Disply question in DOM
+        console.log(questionNumber + ". " + questionAsked.question);
         
-        //Display the questions and answers on the screen:
+        //Assign each of the response divs on the screen an HTML value = to one of the choices from the trivia Questions array
+        //Assign ech div a value from the choiceValue array (0 for wrong, 1 for correct)
+        $("#choiceA").html(questionAsked.choices[0]);
+        $("#choiceADiv").attr("value", questionAsked.choiceValues[0]);
 
-        $("#choiceA").html(triviaQuestions[questionNumber].choices[0]);
-        $("#choiceADiv").attr("value", triviaQuestions[questionNumber].choiceValues[0]);
+        $("#choiceB").html(questionAsked.choices[1]);
+        $("#choiceBDiv").attr("value", questionAsked.choiceValues[1]);
 
-        console.log("choiceAdiv value: " + $("#choiceADiv").attr("value"));
+        $("#choiceC").html(questionAsked.choices[2]);
+        $("#choiceCDiv").attr("value", questionAsked.choiceValues[2]);
 
-        $("#choiceB").html(triviaQuestions[questionNumber].choices[1]);
-        $("#choiceBDiv").attr("value", triviaQuestions[questionNumber].choiceValues[1]);
+        $("#choiceD").html(questionAsked.choices[3]);
+        $("#choiceDDiv").attr("value", questionAsked.choiceValues[3]);
 
-        $("#choiceC").html(triviaQuestions[questionNumber].choices[2]);
-        $("#choiceCDiv").attr("value", triviaQuestions[questionNumber].choiceValues[2]);
 
-        $("#choiceD").html(triviaQuestions[questionNumber].choices[3]);
-        $("#choiceDDiv").attr("value", triviaQuestions[questionNumber].choiceValues[3]);
-
-      
+      //When one of the response divs is clicked, call an anonymous function:
         $(".choiceDivs").on("click", function(){
-                clickedValue = $(this).attr("value");
+                clickedValue = $(this).attr("value"); 
                 console.log(clickedValue);    
                        
-                if (clickedValue == 1)
+                if (clickedValue == 1){  //The correct answer was chosen
                     console.log("That's correct");
-                else
-                    console.log("That's wrong!");
-        })
+                    correctAnswer(); //Not yet defined
+                } else { 
+                    console.log("That's wrong!"); //The incorrect answer was chosen
+                    incorrectAnswer() //Not yet defined
+                }
+        });
 
     };
+
+    function correctAnswer(){
+        numberCorrect++; //Increase number of correct responses by 1
+        gameMessage = "CORRECT!" //change game message to correct
+        $("#gameMessage").html(gameMessage); //display game message on screen
+        $("#questionInfoDiv").html(questionAsked.extraFact); //display "Extr fact" for selected question 
+        $(".imageDiv").append(questionAsked.display); //Attach display image/video to DOM
+
+        $("#gamePanel").hide(); //Hides the game question panel; 
+        $("#afterResponse").show(); //Display the adterResponse div
+
+       questionNumber++; //increase the questionNumber by 1
+
+       //After 7 seconds Check if game is over:
+            //yes: call gameover function
+            //no: 
+                //Wait 5 seconds
+                // call startGame function 
+    };
+
+    function incorrectAnswer(){
+        
+        
+    };
+
+
 
 
     //When the page loads:
     $(document).ready(function(){
         $("#gamePanel").hide(); //Hides the game panel; add steps to make it hide automatically. css?
+        $("#afterResponse").hide();//Hides the afterResponse panel;
             //Add steps to set the song to play
      
             //Select start button and when clicked run an anonymous callback function
@@ -150,13 +186,12 @@
             gameStarted = true; 
             console.log(startGame);
 
-            if (gameStarted){
-                $("#instructionsPanel").hide(); //Hide the instructions panel
-                $("#gamePanel").show(); //Show the game panel
-                startGame(); //Call the startGame Function (to be defined)
-                }
+            $("#instructionsPanel").hide(); //Hide the instructions panel
+
+            startGame(); //Call the startGame Function (to be defined)
+        }
     
-        });
+    });
 
 
 

@@ -18,9 +18,23 @@
     padding-right: 30px;
 }
 
+.mainPanel{
+    padding-right:20px;
+
+}
+
+
 /*Response Boxes */
 .choiceDivs{
     width: fit-content;
     padding-left:20px;
     padding-right:20px;
+}
+
+.choiceDivs:hover{
+    border: 2px solid blue;
+}
+
+.choiceDivs:active {
+    opacity:.7
 }
