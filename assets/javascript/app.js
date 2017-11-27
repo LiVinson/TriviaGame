@@ -2,22 +2,29 @@
 // Music starts playing (Fresh Prince theme music?)
 // User presses button to begin
 
-//-----GLOBAL VARIABLES ----------------------------------------------
+//-----------GLOBAL VARIABLES ----------------------------------------------
 
     var themeSong = "tbd";//Create audio element, will assign src to theme song mp3 file
 
-    var gameStarted = false; //Div displayed changes based on true/false
-
-    var questionAsked = ""; //Will be assigned new value = to selected question and displyed
+    var questionAsked = ""; //Will be assigned new value = to selected question and displayed
 
     var questionNumber = 0; //Will increase for each question asked
-
-    var choiceDivs = ["#ChoiceA", "#ChoiceB", "#ChoiceC", "#ChoiceD"]
 
     var numberCorrect = 0; //Will increase if answer is correct
 
     var gameMessage = ""; //Will be reset based on if reply is correct or not
 
+    var timer = 15; //15 second timer
+    
+
+    var timerRunning = false;
+
+    var countDown //Will be used to track the timer
+
+    var postQuestionPause;
+    var endGamePause;
+
+    var gameOverMessage = "";
 //Array containing an object for each trivia question
     var triviaQuestions = [ 
 
@@ -81,7 +88,7 @@
 
         question8 = {
             question: "When a Princeton recruiter comes to Will and Carl’s school for interviews, Will impresses the recruiter by doing what?",
-            choices: ["Reciting a rap", "Solving a complex math problem", "winning a debate with another student", "Solving a Rubik’s cube"],
+            choices: ["Performing a rap", "Solving a complex math problem", "winning a debate with another student", "Solving a Rubik’s cube"],
             choiceValues: [0, 0, 0, 1],
             display: "TBD",  // 
             extraFact: "In the film Pursuit of Happyness, Will Smith plays a character that solves a rubiks cube and impresses a top executive, a feat the actor can do in real life."
@@ -97,7 +104,7 @@
 
         question10 = {
             question: "Upset that she is being treated like a child, Ashley performs a version of this song on stage at a karoke event in front of her family:",
-            wrongChoices: ["'Respect' by Aretha Franklin", "'I Will Always Love You' by Whitney Houston", "'End of the Road' by Boyz II Men", "'Don't Take It Personal' by Monica"],
+            choices: ["'Respect' by Aretha Franklin", "'I Will Always Love You' by Whitney Houston", "'End of the Road' by Boyz II Men", "'Don't Take It Personal' by Monica"],
             choiceValues: [1, 0, 0, 0],
             display: "TBD",  // 
             extraFact: "TBD"
@@ -109,15 +116,19 @@
 
     //Defining fuction to choose a question, display on screen, listen for click, determine if correct
     function startGame(){
-        console.log("Start game function!")
- 
-        questionAsked = triviaQuestions[questionNumber]; //Select the next question from the triviaQuestion array
+        console.log("Start game function!");
+        $("#gameOverPanel").hide();
+        questionAsked = triviaQuestions[questionNumber]; //Select the question item from the triviaQuestion array stating with 0 and set = to question Asked
         
-        $("#questionDiv").html(questionAsked.question); //Disply question in DOM
-        console.log(questionNumber + ". " + questionAsked.question);
-        
+        $("#questionDiv").html(questionAsked.question); //Display question in DOM
+        console.log((questionNumber+1) + ". " + questionAsked.question);
+
+        $("#afterResponse").hide()//hide afterResponse panel from last question
+        $("#gamePanel").show(); //Show the game panel
+       
         //Assign each of the response divs on the screen an HTML value = to one of the choices from the trivia Questions array
         //Assign ech div a value from the choiceValue array (0 for wrong, 1 for correct)
+               
         $("#choiceA").html(questionAsked.choices[0]);
         $("#choiceADiv").attr("value", questionAsked.choiceValues[0]);
 
@@ -130,77 +141,125 @@
         $("#choiceD").html(questionAsked.choices[3]);
         $("#choiceDDiv").attr("value", questionAsked.choiceValues[3]);
 
-        $("#afterResponse").hide()//hide afterResponse panel from last question
-        $("#gamePanel").show(); //Show the game panel
+        //Run a function that displays the time , reduces count by 1,            
+        timer = 15;
+        $("#timer").html(timer);
+        
+        if(!timerRunning) { //run code below only if timerRunning is set to false
+            countDown = setInterval(decrement, 1000); //Every 1s, call the decrement function
+            timerRunning = true;
+        }          
 
-      //When one of the response divs is clicked, call an anonymous function:
-        $(".choiceDivs").on("click", function(){
-                clickedValue = $(this).attr("value"); 
+
+        //When one of the response divs is clicked, call an anonymous function:
+        $(".choiceDivs").off().on("click", function(){ //Use .off to keep event from firing multiple times
+                clickedValue = $(this).attr("value"); //Assign value (0 or 1 based on if correct) of clicked div
                 console.log(clickedValue);    
                        
                 if (clickedValue == 1){  //The correct answer was chosen
-                    console.log("That's correct");
                     numberCorrect++; //Increase number of correct responses by 1
+                    console.log("That's correct. Correct number: " + numberCorrect);
+                    $(".numberCorrect").html(numberCorrect); //Display number correct on screen
                     gameMessage = "CORRECT!"; //change game message to correct
-                    questionAnswered();
+                    timeUp();
                 } else { 
                     console.log("That's wrong!"); //The incorrect answer was chosen
                     gameMessage = "Wrong!"; //change game message to correct
-                    questionAnswered(); 
+                    timeUp(); 
                 }
         });
 
     };
 
+    //Defining fuction to trigger countdown, display on screen
+    function decrement(){
+        timer--; //global variable count goes down by 1
+        $("#timer").html(timer);
+
+        if (timer <= 0){
+            console.log("Time up!")
+            gameMessage = "Time's Up!"
+            timeUp(); //Call timeUp function
+        }
+    };
+    
+    //Defining fuction to trigger countdown, display on screen
+    function timeUp(){
+        console.log("time up function!")
+        clearInterval(countDown); //Stop the setInterval
+        timerRunning = false;
+        questionAnswered();
+    };
+    
+    
     //Defining fuction to update afterResponse div, check if game should continue
 
     function questionAnswered(){ 
+        console.log("questionAnswered function")
         $("#gameMessage").html(gameMessage); //display game message on screen
         $("#questionInfoDiv").html(questionAsked.extraFact); //display "Extra fact" for selected question 
-        $(".imageDiv").append(questionAsked.display); //Attach display image/video to DOM
+        $(".imageDiv").html(questionAsked.display); //Attach display image/video to DOM
 
         $("#gamePanel").hide(); //Hides the game question panel; 
         $("#afterResponse").show(); //Display the afterResponse div
 
        questionNumber++; //increase the questionNumber by 1
+       console.log("question Number " + questionNumber)
 
-       //After 7 seconds Check if game is over:
-            if (questionNumber == 10){
-                var endGamePause = setTimeout(gameOver, 3000); //To be defined
-            }
-            else{
-                var postQuestionPause = setTimeout(startGame, 7000);
-            }
+       //Check if all questions have been answered
+        if (questionNumber == 10) {
+            console.log("Last question, game over!")
+            endGamePause = setTimeout(gameOver, 3000); //To be defined
+        }
+        else {
+            console.log("call startGame in 7")
+            postQuestionPause = setTimeout(startGame, 7000);
+        }
          
     };
 
-    function incorrectAnswer(){
-        
-        //To be defined 
-    };
 
     function gameOver(){
+        $("#gamePanel").hide(); 
+        $("#afterResponse").hide();
+        $("#gameOverPanel").show();//Hides the game over panel
 
+        if (numberCorrect < 4){
+            gameOverMessage = "Looks like you're not a Fresh Prince whiz!";
+            
+        } else if (numberCorrect <8){
+            gameOverMessage = "You may not be the prince of Bel-Air, but you know your stuff!";
 
-//To be defined
+        } else
+            gameOverMessage = "You're practically West Philidelphia, born and raised!";
+
+        $("#gameOverMessage").html(gameOverMessage);
+        $("#gameOverImage").html("<img src = 'assets/images/freshPrinceLogo3.jpg'>")
+
+        $("#restart").on("click",function(){
+            questionNumber = 0; 
+            numberCorrect = 0;
+            startGame();
+        })
     };
+
+
 
 
 
     //When the page loads:
     $(document).ready(function(){
         $("#gamePanel").hide(); //Hides the game panel; add steps to make it hide automatically. css?
+        $("#gameOverPanel").hide();//Hides the game over panel
         $("#afterResponse").hide();//Hides the afterResponse panel;
             //Add steps to set the song to play
      
             //Select start button and when clicked run an anonymous callback function
+        $(".numberCorrect").html(numberCorrect);
         $("#startButton").on("click",function(){
-            gameStarted = true; 
-            console.log(startGame);
+        $("#instructionsPanel").hide(); //Hide the instructions panel
 
-            $("#instructionsPanel").hide(); //Hide the instructions panel
-
-            startGame(); //Call the startGame Function (to be defined)
+        startGame(); //Call the startGame Function
         });
     
     });

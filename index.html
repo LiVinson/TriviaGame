@@ -30,7 +30,7 @@
 <!--Row 2: Instruction Screen Panel/Game Panel + Time&Score Panel:  -->
 <div class="row">
            
-    <!--Column1: contains all main panels-->
+    <!--Column1: contains all main panels: Instructions, Game, AfterResponse, and GameOver-->
     <div class = "col-lg-8 col-md-8 col-sm-8 col-xs-12 mainPanel"> 
 
         <!--Instructions Panel--> 
@@ -40,8 +40,10 @@
             </div>
 
             <div class="panel-body">
-                <p>Instructions paragraph 1</p>
-                <p>Instructions paragraph 2</p>
+                <p>Think you're a Fresh Prince whiz?</p>
+                <p>Test your knowledge in this Fresh Prince of Bel-Air trivia game! Select the correct answer to each
+                    question in 10 seconds to gain a point. 
+                </p>
                 <button type="button" class="center-block btn btn-default" id = "startButton">Start Game</button>
             </div>
         </div>
@@ -80,6 +82,24 @@
                 </div>
         </div>
 
+        <!-- GameOver Panel --> 
+
+        <div class="panel panel-default" id = "gameOverPanel">
+                <div class="panel-heading">"
+                    <h3 class="panel-title">GAME OVER!</h3> <!--Add logic to update message depending on if response correct or not-->
+                </div>
+                                       
+                <div class="panel-body">
+                    <div>You answered <span class="numberCorrect"></span> out of 10!</div>
+                    
+                    <div><span id = "gameOverMessage"></span></div>
+                        
+                    <div id="gameOverImage"></div>   
+
+                    <button id="restart">Play Again!</button>
+
+                </div>
+        </div>
 
 
     
@@ -88,13 +108,10 @@
 
     <!-- Column 2: Score/Time Panel --> 
         <div class="panel panel-default col-lg-4 col-md-4 col-sm-4 col-xs-12" id = "scorePanel">
-            <div class="panel-heading">
-                <h3 class="panel-title">Score</h3>
-            </div>
 
             <div class="panel-body">
-                <div>Time Remaining</div>
-                <div>Number Correct: <span></span></div>
+                <div>Time Remaining: <span id="timer"></span></div>
+                <div>Number Correct: <span class="numberCorrect"></span> out of 10</div>
             </div>
 
         </div>
