@@ -8,7 +8,7 @@
 
     var questionAsked = ""; //Will be assigned new value = to selected question and displayed
 
-    var questionNumber = 0; //Will increase for each question asked
+    var questionNumber = 0; //Will increase for each question askedffff
 
     var numberCorrect = 0; //Will increase if answer is correct
 
@@ -34,16 +34,18 @@
             question: "When Ashley reveals to Will that she does not enjoy taking violin lessons, he pawns her violin in for a: ",
             choices: ["Drum set", "Turn table", "Microphone", "Keyboard"], //first choice is correct
             choiceValues: [1, 0, 0, 0],
-            display: "<video controls autoplay loop><source src='assets/images/giphy.mp4' type='video/mp4'></video>",  //"src of Video clip of Jazz playing, will dancing",
-            extraFact: "Will hires his friend Jazz, played by DJ Jazzy Jeff to teach Ashley how to play her new drum set."
+            questionImage: "<img src='assets/images/ashleyBanks.jpg' class='questionImages'>",
+            display: "<video controls autoplay><source src='assets/images/gifs/question1Gif.mp4' type='video/mp4'  class='afterQuestionImage'></video >",  
+            extraFact: "Will hires his friend Jazz, played by DJ Jazzy Jeff, to teach Ashley how to play her new drum set."
         },
 
         question2 = { 
-            question: "While visiting, Uncle Phil’s mom reveals to Will over a game of cards that Uncle Phil’s nickname back in his country hometown is:",
+            question: "While visiting, Uncle Phil’s mom, Hattie Banks, reveals to Will over a game of cards that Uncle Phil’s nickname back in his country hometown is:",
             choices: ["Philly", "Big Phil", "Zeke", "Sonny"],
             choiceValues: [0, 0, 1, 0],
-            display: "tbd",  //"TBD",
-            extraFact: "TBD"
+            questionImage: "<img src='assets/images/unclePhil.jpg' class='questionImages'>",
+            display: "<img src='assets/images/hattieBanks.jpg' class ='afterQuestionImage'>",
+            extraFact: "Phil's mother, played by Virginia Capers, made guest appearances throughout the 6 seasons of the show."
 
         },
 
@@ -51,39 +53,44 @@
             question: "Aiming to impress the girls in his poetry class, Will spontaneously makes up a poem called 'Tick Tock Clock' that he claims is written by a poet friend named:",
             choices: ["Jazzy Jeff", "Raphael de la Ghetto", "Heavy D", "William Shakesmith"],
             choiceValues: [0, 1, 0, 0],
-            display: "TBD",  // Picture of Jeoffery as Rafael de la Ghetto
-            extraFact: "TBD"
+            questionImage: "<img src='assets/images/tickTockClock.png' class='questionImages'>",
+            display: "<video controls autoplay><source src='assets/images/gifs/raphaelDLG.mp4' type='video/mp4' class='afterQuestionImage'></video >",
+            extraFact: "The family butler, Geoffrey, agrees to pretend to be the fictional poet and perform in front of Will's classmates."
         
         },
   
         question4 = {
-            question: "When Ashley is being bullied at school, Will and Carlton try to help :",
+            question: "When Ashley is being bullied at school, Will and Carlton try to help her by:",
             choices: ["telling a teacher", "bribing the bully with $50", "switching Ashley’s class", "taking the bully on a date"],
             choiceValues: [0, 1, 0, 0],
-            display: "TBD",  // Scene of Will teaching Ashley how to figh
-            extraFact: "TBD"
+            questionImage: "<img src='assets/images/ashleyBully.jpg' class='questionImages'>",
+            display: "<video controls autoplay><source src='assets/images/gifs/ashleyFighting.mp4' type='video/mp4'  class='afterQuestionImage'></video >",
+            extraFact: "Will also tries to teach Ashley to fight the bully, but is unsucessful. Ultimately, Ashley and the bully settle their differences peacefully."
         },
         
         question5 = {
             question: "Nervous about turning 40, Aunt Vivian enrolls in <span class='italics'>this</span> type of class, surprising her much younger classmates with a star performance:",
             choices: ["Singing Lessons", "Acting Classes", "Modeling Classes", "Dance Classes"],
             choiceValues: [0, 0, 0, 1],
-            display: "TBD",  // Extended gif/Video of Aunt Viv’s dance scene
-            extraFact: "Before being cast as Aunt Viv, Janet Huber studied at Julliard School and the Alvin Ailey Dance company"
+            questionImage: "<img src='assets/images/auntViv.jpg' class='questionImages'>",
+            display: "<video controls autoplay><source src='assets/images/gifs/auntVivDancing.mp4' type='video/mp4'  class='afterQuestionImage'></video >",
+            extraFact: "Before being cast as Aunt Viv, Janet Huber studied at Julliard School and the Alvin Ailey Dance company."
         },
 
         question6 = {
-            question: "Suing Uncle Phil for Will crashing into his car, Hilary’s boyfriend Eric admits he didn’t have his <span class='italics'>this</span> with him during the accident, causing him to lose the case:",
+            question: "While suing Uncle Phil because Will crashed into his car, Hilary’s boyfriend Eric admits he didn’t have his <span class='italics'>this</span> with him during the accident, causing him to lose the case:",
             choices: ["glasses", "license", "registration", "wallet"],
             choiceValues: [1, 0, 0, 0],
-            display: "TBD",  // 
-            extraFact: "TBD"
+            questionImage: "<img src='assets/images/hilarysBoyfriend.jpg' class='questionImages'>",
+            display: "<video controls autoplay><source src='assets/images/gifs/willRapmobile.mp4' type='video/mp4'  class='afterQuestionImage'></video >",
+            extraFact: "Will's 'Rapmobile', usually uninsured and blasting music, was often cause for an argument between Will and Uncle Phil."
         },
 
         question7 = {
             question: "When Will wins $1,000 at a charity fundraiser, he refuses to donate the money to the designated charity and instead does what with his winnings?",
             choices: ["Buys new speakers", "Buys new shoes", "Gives it to Ramon for basketball camp", "Gives it to Ashley for singing lessons"],
             choiceValues: [0, 0, 1, 0],
+            questionImage: "TBD",
             display: "TBD",  // Picture of Ramon
             extraFact: "TBD"
         },
@@ -92,10 +99,11 @@
             question: "When a Princeton recruiter comes to Will and Carl’s school for interviews, Will impresses the recruiter by doing what?",
             choices: ["Performing a rap", "Solving a complex math problem", "winning a debate with another student", "Solving a Rubik’s cube"],
             choiceValues: [0, 0, 0, 1],
-            display: "TBD",  // 
-            extraFact: "In the film Pursuit of Happyness, Will Smith plays a character that solves a rubiks cube and impresses a top executive, a feat the actor can do in real life."
+            questionImage: "<img src='assets/images/willPrinceton.jpg' class='questionImages'>",
+            display: "<video controls autoplay><source src='assets/images/gifs/princetonInterview.mp4' type='video/mp4'  class='afterQuestionImage'></video >",
+            extraFact: "In the film Pursuit of Happyness, Will Smith again plays a character that solves a rubiks cube, a feat the actor can do in real life."
         },
-  
+  //LEFT OFF HERE
         question9 = {
             question: "Worried that it might damage Uncle Phil’s reputation during his campaign for local judge, Geoffrey confesses that he did this in the 1970s, causing him to leave England in shame and move to the U.S.",
             choices: ["Stole from a previous employer","Cheated in an Olympic race","Broke a national artifact", "Lied about ***"],
@@ -119,19 +127,30 @@
     //Defining fuction to choose a question, display on screen, listen for click, determine if correct
     function startGame(){
         console.log("Start game function!");
-        $("#gameOverPanel").hide();
+    //Set up everything for game panel:
+        //Hides if showing from previous game
+        $("#gameOverPanel").hide(); 
         
-        $(".questionNum").html(questionNumber + 1);
-        questionAsked = triviaQuestions[questionNumber]; //Select the question item from the triviaQuestion array stating with 0 and set = to question Asked
+        //Display question number in game panel header
+        $(".questionNum").html(questionNumber + 1); 
+
+        //Select the question item from the triviaQuestion array starting with 0 and set = to questionAsked
+        questionAsked = triviaQuestions[questionNumber]; 
         
-        $(".questionText").html(questionAsked.question); //Display question in DOM
+        //Display question in DOM
+        $(".questionText").html(questionAsked.question); 
         console.log((questionNumber+1) + ". " + questionAsked.question);
 
-        $("#afterResponse").hide()//hide afterResponse panel from last question
-        $("#gamePanel").show(); //Show the game panel
+        //Remove image from last question, and display new image in the DOM
+        $("#questionImage").empty().append(questionAsked.questionImage); 
+
+        //hide afterResponse panel from last question and show the game panel
+        $("#afterResponse").hide()
+        $("#gamePanel").show(); 
        
-        //Assign each of the response divs on the screen an HTML value = to one of the choices from the trivia Questions array
-        //Assign ech div a value from the choiceValue array (0 for wrong, 1 for correct)
+        //Assign each of the response divs on the screen an HTML value = to one of the choices from the 
+        //trivia Questions array and ssign ech div a value from the choiceValue array 
+        //(0 for wrong, 1 for correct)
                
         $("#choiceA").html(questionAsked.choices[0]);
         $("#choiceADiv").attr("value", questionAsked.choiceValues[0]);
@@ -146,34 +165,28 @@
         $("#choiceDDiv").attr("value", questionAsked.choiceValues[3]);
 
         //Identify the correct answer to be used in HTML text
-        answerIndex = questionAsked.choiceValues.indexOf(1);
-        correctAnswer = questionAsked.choices[answerIndex];
+        answerIndex = questionAsked.choiceValues.indexOf(1); //Locate index location of "1" (corresponds to correct answer)
+        correctAnswer = questionAsked.choices[answerIndex]; //Locate text in choices array in same index location
 
-        //Run a function that displays the time , reduces count by 1,            
+        //Resets the timer, displays on screen, and reduces count by 1 by calling decrement function,            
         timer = 15;
         $("#timer").html(timer);
         
         if(!timerRunning) { //run code below only if timerRunning is set to false
             countDown = setInterval(decrement, 1000); //Every 1s, call the decrement function
             timerRunning = true;
-        }          
-
-
+        };       
+        
         //When one of the response divs is clicked, call an anonymous function:
         $(".choiceDivs").off().on("click", function(){ //Use .off to keep event from firing multiple times
-                
-           
-            
-            console.log("answerIndex: " + answerIndex);
-            console.log("The correct answer is " + correctAnswer);
                  
-                clickedValue = $(this).attr("value"); //Assign value (0 or 1 based on if correct) of clicked div
+                //Assign value (0 or 1 based on if correct) of clicked div 
+                clickedValue = $(this).attr("value"); 
                 console.log(clickedValue);    
                        
                 if (clickedValue == 1){  //The correct answer was chosen
                     numberCorrect++; //Increase number of correct responses by 1
                     console.log("That's correct. Correct number: " + numberCorrect);
-                    $(".numberCorrect").html(numberCorrect); //Display number correct on screen
                     gameMessage = correctAnswer + " is <span id='correctText'>CORRECT!</span>"; //change game message to correct
                     timeUp();
                 } else { 
@@ -210,9 +223,9 @@
     function questionAnswered(){ 
         console.log("questionAnswered function")
         $("#gameMessage").html(gameMessage); //display game message on screen
-        $("#questionInfoDiv").html(questionAsked.extraFact); //display "Extra fact" for selected question 
-        $(".imageDiv").html(questionAsked.display); //Attach display image/video to DOM
-
+        $("#questionInfo").html(questionAsked.extraFact); //display "Extra fact" for selected question 
+        $(".imageDiv").html(questionAsked.display); //Attach display image/video from trivia array to DOM
+        $(".numberCorrect").html(numberCorrect + " out of " + (questionNumber + 1)); //Display number correct on screen
         $("#gamePanel").hide(); //Hides the game question panel; 
         $("#afterResponse").show(); //Display the afterResponse div
 
@@ -226,7 +239,7 @@
         }
         else {
             console.log("call startGame in 7")
-            postQuestionPause = setTimeout(startGame, 7000);
+            postQuestionPause = setTimeout(startGame, 10500);
         }
          
     };
@@ -252,6 +265,7 @@
         $("#restart").on("click",function(){
             questionNumber = 0; 
             numberCorrect = 0;
+            $(".numberCorrect").html(numberCorrect + " out of " + (questionNumber + 1))
             startGame();
         })
     };
@@ -268,6 +282,7 @@
      
             //Select start button and when clicked run an anonymous callback function
         $(".numberCorrect").html(numberCorrect);
+        $("#timer").html(timer);
         $("#startButton").on("click",function(){
         $("#instructionsPanel").hide(); //Hide the instructions panel
 

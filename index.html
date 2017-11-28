@@ -17,13 +17,13 @@
 <div class="row">
     <div class="jumbotron">
         <!-- <h1>Fresh Prince of Bel-Air Trivia</h1> -->
-        <img src ="assets/images/freshPrinceLogo.png" id="logo">
+        <img class="img-responsive" src ="assets/images/freshPrinceLogo.png" id="logo">
         
     </div>
 
-    <div id = "trivia">
+    <span id = "trivia">
         TRIVIA
-    </div>
+    </span>
 </div>
 
 
@@ -35,7 +35,7 @@
     <!--Column1: contains all main panels: Instructions, Game, AfterResponse, and GameOver-->
     <div class = "col-lg-8 col-md-8 col-sm-8 col-xs-12 mainPanel"> 
 
-        <!--Instructions Panel--> 
+        <!--INSTRUCTIONS PANEL--> 
         <div class="panel panel-default" id = "instructionsPanel">
             <div class="panel-heading">
                 <h3 class="panel-title">INSTRUCTIONS</h3>
@@ -50,7 +50,7 @@
             </div>
         </div>
         
-        <!-- Game Panel -->   
+        <!-- GAME PANEL -->   
         <div class="panel panel-default" id = "gamePanel">
                 <div class="panel-heading">
                     <h3 class="panel-title">Question #<span class="questionNum"></span> of 10</h3>
@@ -73,7 +73,7 @@
                 </div>
         </div>
 
-        <!-- After Response Selected Panel --> 
+        <!-- AFTER RESPONSE SELECTED PANEL --> 
 
         <div class="panel panel-default" id = "afterResponse">
                 <div class="panel-heading">
@@ -81,16 +81,19 @@
                 </div>
      
                 <div class="panel-body">
-                    <div><span id = "gameMessage"></span></div>
+                    <div class="gameDiv"><span id = "gameMessage"></span></div>
 
-                    <div><span id="questionInfoDiv"></span> </div> <!--Add logic to display message based on question not-->
+                    <div class="questionInfoDiv"><span id="questionInfo"></span> </div> 
 
-                <div class="imageDiv"></div><!--Add logic for an image or a gif-->     
+                <div class="imageDiv"></div>   
 
+
+
+                
                 </div>
         </div>
 
-        <!-- GameOver Panel --> 
+        <!-- GAMEOVER PANEL --> 
 
         <div class="panel panel-default" id = "gameOverPanel">
                 <div class="panel-heading">"
@@ -98,7 +101,7 @@
                 </div>
                                        
                 <div class="panel-body">
-                    <div>You answered <span class="numberCorrect"></span> out of 10!</div>
+                    <div>You answered <span class="numberCorrect"></span></div>
                     
                     <div><span id = "gameOverMessage"></span></div>
                         
@@ -121,7 +124,7 @@
 
             <div class="panel-body">
                 <div>Time Remaining: <span id="timer"></span></div>
-                <div>Number Correct: <span class="numberCorrect"></span> out of 10</div>
+                <div>Number Correct: <span class="numberCorrect"></span></div>
             </div>
 
         </div>
