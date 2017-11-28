@@ -15,11 +15,13 @@
     var gameMessage = ""; //Will be reset based on if reply is correct or not
 
     var timer = 15; //15 second timer
-    
-
     var timerRunning = false;
+    var countDown; //Will be used to track the timer
 
-    var countDown //Will be used to track the timer
+    var answerIndex;
+    var answerChosen = "";
+
+
 
     var postQuestionPause;
     var endGamePause;
@@ -118,9 +120,11 @@
     function startGame(){
         console.log("Start game function!");
         $("#gameOverPanel").hide();
+        
+        $(".questionNum").html(questionNumber + 1);
         questionAsked = triviaQuestions[questionNumber]; //Select the question item from the triviaQuestion array stating with 0 and set = to question Asked
         
-        $("#questionDiv").html(questionAsked.question); //Display question in DOM
+        $(".questionText").html(questionAsked.question); //Display question in DOM
         console.log((questionNumber+1) + ". " + questionAsked.question);
 
         $("#afterResponse").hide()//hide afterResponse panel from last question
@@ -141,6 +145,10 @@
         $("#choiceD").html(questionAsked.choices[3]);
         $("#choiceDDiv").attr("value", questionAsked.choiceValues[3]);
 
+        //Identify the correct answer to be used in HTML text
+        answerIndex = questionAsked.choiceValues.indexOf(1);
+        correctAnswer = questionAsked.choices[answerIndex];
+
         //Run a function that displays the time , reduces count by 1,            
         timer = 15;
         $("#timer").html(timer);
@@ -153,6 +161,12 @@
 
         //When one of the response divs is clicked, call an anonymous function:
         $(".choiceDivs").off().on("click", function(){ //Use .off to keep event from firing multiple times
+                
+           
+            
+            console.log("answerIndex: " + answerIndex);
+            console.log("The correct answer is " + correctAnswer);
+                 
                 clickedValue = $(this).attr("value"); //Assign value (0 or 1 based on if correct) of clicked div
                 console.log(clickedValue);    
                        
@@ -160,11 +174,11 @@
                     numberCorrect++; //Increase number of correct responses by 1
                     console.log("That's correct. Correct number: " + numberCorrect);
                     $(".numberCorrect").html(numberCorrect); //Display number correct on screen
-                    gameMessage = "CORRECT!"; //change game message to correct
+                    gameMessage = correctAnswer + " is <span id='correctText'>CORRECT!</span>"; //change game message to correct
                     timeUp();
                 } else { 
                     console.log("That's wrong!"); //The incorrect answer was chosen
-                    gameMessage = "Wrong!"; //change game message to correct
+                    gameMessage = "Wrong! The correct answer is <span id='correctAnswer'>" + correctAnswer + "!</span>"; //change game message to correct
                     timeUp(); 
                 }
         });
@@ -178,22 +192,21 @@
 
         if (timer <= 0){
             console.log("Time up!")
-            gameMessage = "Time's Up!"
+            gameMessage = "Time's Up! The correct answer is <span id='correctAnswer'>" + correctAnswer + "!</span>";
             timeUp(); //Call timeUp function
         }
     };
     
-    //Defining fuction to trigger countdown, display on screen
+    //Defining fuction to end timer countdown after each question is answered/time runs out
     function timeUp(){
         console.log("time up function!")
         clearInterval(countDown); //Stop the setInterval
         timerRunning = false;
-        questionAnswered();
+        questionAnswered(); //Call the questionAnswered function
     };
     
     
-    //Defining fuction to update afterResponse div, check if game should continue
-
+    //Defining fuction to update afterResponse div, check if game should continue after each question is answered
     function questionAnswered(){ 
         console.log("questionAnswered function")
         $("#gameMessage").html(gameMessage); //display game message on screen
@@ -218,7 +231,7 @@
          
     };
 
-
+    //Defining fuction tto end game, show final stats
     function gameOver(){
         $("#gamePanel").hide(); 
         $("#afterResponse").hide();
@@ -244,8 +257,7 @@
     };
 
 
-
-
+//-----------Code to Run When Page Loads -------------------------
 
     //When the page loads:
     $(document).ready(function(){

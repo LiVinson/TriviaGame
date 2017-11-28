@@ -6,6 +6,7 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link rel="stylesheet" href="assets/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Sedgwick+Ave|Sedgwick+Ave+Display" rel="stylesheet">
     </head>
     
 <body>
@@ -16,7 +17,8 @@
 <div class="row">
     <div class="jumbotron">
         <!-- <h1>Fresh Prince of Bel-Air Trivia</h1> -->
-        <p> </p>
+        <img src ="assets/images/freshPrinceLogo.png" id="logo">
+        
     </div>
 
     <div id = "trivia">
@@ -36,7 +38,7 @@
         <!--Instructions Panel--> 
         <div class="panel panel-default" id = "instructionsPanel">
             <div class="panel-heading">
-                <h3 class="panel-title">Instructions</h3>
+                <h3 class="panel-title">INSTRUCTIONS</h3>
             </div>
 
             <div class="panel-body">
@@ -44,25 +46,29 @@
                 <p>Test your knowledge in this Fresh Prince of Bel-Air trivia game! Select the correct answer to each
                     question in 10 seconds to gain a point. 
                 </p>
-                <button type="button" class="center-block btn btn-default" id = "startButton">Start Game</button>
+                <button type="button" class="center-block btn btn-default btn-lg" id = "startButton">Start Game</button>
             </div>
         </div>
         
         <!-- Game Panel -->   
         <div class="panel panel-default" id = "gamePanel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Question #</h3>
+                    <h3 class="panel-title">Question #<span class="questionNum"></span> of 10</h3>
                 </div>
      
                 <div class="panel-body">
-                    <div>Question: <span id="questionDiv"></span> </div>
+                    <div class="questionDiv"><span class="questionText"></span></div>
 
                     <div class="responses"> 
                         <div class="well well-sm choiceDivs" id="choiceADiv" value="">A. <span id="choiceA"></span></div>
                         <div class="well well-sm choiceDivs" id="choiceBDiv" value="">B. <span id="choiceB"></span></div>
                         <div class="well well-sm choiceDivs" id="choiceCDiv" value="">C. <span id="choiceC"></span></div>
                         <div class="well well-sm choiceDivs" id="choiceDDiv" value="">D. <span id="choiceD"></span></div>
-                    </div>          
+                    </div>  
+                    
+                    <div id="questionImage">
+
+                    </div>
 
                 </div>
         </div>
@@ -70,11 +76,13 @@
         <!-- After Response Selected Panel --> 
 
         <div class="panel panel-default" id = "afterResponse">
-                <div class="panel-heading">"
-                    <h3 class="panel-title"><span id = "gameMessage"></span></h3> <!--Add logic to update message depending on if response correct or not-->
+                <div class="panel-heading">
+                    <h3 class="panel-title">Question #<span class="questionNum"></span> of 10</h3>
                 </div>
      
                 <div class="panel-body">
+                    <div><span id = "gameMessage"></span></div>
+
                     <div><span id="questionInfoDiv"></span> </div> <!--Add logic to display message based on question not-->
 
                 <div class="imageDiv"></div><!--Add logic for an image or a gif-->     
@@ -101,13 +109,15 @@
                 </div>
         </div>
 
-
-    
+   
     </div> <!--End of Column1-->
 
 
     <!-- Column 2: Score/Time Panel --> 
         <div class="panel panel-default col-lg-4 col-md-4 col-sm-4 col-xs-12" id = "scorePanel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Time &amp; Score</h3> <!--Add logic to update message depending on if response correct or not-->
+            </div>
 
             <div class="panel-body">
                 <div>Time Remaining: <span id="timer"></span></div>
@@ -115,8 +125,6 @@
             </div>
 
         </div>
-
-    <!--End of Game Screen:  -->
 
     </div> <!--End of Row-->
  
