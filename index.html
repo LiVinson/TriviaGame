@@ -11,7 +11,16 @@
     
 <body>
 
-<div class="container"> 
+<div class="container">
+
+<!--AUDIO-->
+
+<audio loop id="themeSong">
+    <source src= "assets/images/themeSong.mp3"  type="audio/mp3">
+</audio>  
+
+
+
 
 <!--Row 1: Header with Game Title:  -->
 <div class="row">
@@ -47,6 +56,7 @@
                     question in 10 seconds to gain a point. 
                 </p>
                 <button type="button" class="center-block btn btn-default btn-lg" id = "startButton">Start Game</button>
+                
             </div>
         </div>
         
@@ -96,17 +106,17 @@
         <!-- GAMEOVER PANEL --> 
 
         <div class="panel panel-default" id = "gameOverPanel">
-                <div class="panel-heading">"
-                    <h3 class="panel-title">GAME OVER!</h3> <!--Add logic to update message depending on if response correct or not-->
+                <div class="panel-heading">
+                    <h3 class="panel-title">GAME OVER!</h3>
                 </div>
                                        
                 <div class="panel-body">
-                    <div>You answered <span class="numberCorrect"></span></div>
+                    <div>You answered <span class="numberCorrect"></span> correctly!</div>
                     
                     <div><span id = "gameOverMessage"></span></div>
                         
                     <div id="gameOverImage"></div>   
-
+                    <br>
                     <button id="restart">Play Again!</button>
 
                 </div>

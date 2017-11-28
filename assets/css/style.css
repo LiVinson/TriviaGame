@@ -150,3 +150,12 @@ body {
 .italics{
     font-style:italic;
 }
+
+#restart{
+    background-color:#FFA500;
+}
+
+#restart:hover{
+        opacity:.8;
+}
+
