@@ -10,10 +10,6 @@
 
     var musicPlaying = false;
 
-    var endingVideo = document.createElement("video"); 
-
-    endingVideo.setAttribute("src", "assets/images/gifs/carltonDancing.mp4");
-
     var questionAsked = ""; //Will be assigned new value = to selected question and displayed
 
     var questionNumber = 0; //Will increase for each question askedffff
@@ -290,10 +286,9 @@
             
         } else
             gameOverMessage = "You're practically West Philidelphia, born and raised!";
+               
         
-        
-        // endingVideo.load().play();
-        $("#gameOverImage").html(endingVideo.play());
+        $("#gameOverImage").html("<img class='img-responsive' src ='assets/images/freshPrinceLogo3.jpg>");
             
         $("#gameOverMessage").html(gameOverMessage); 
         
@@ -327,7 +322,7 @@
         //Music for start of game
         themeSong = document.getElementById("themeSong");
         musicPlaying = false;
-        endingVideo.pause();
+        
 
         //Display number correct and timer in DOM
         $(".numberCorrect").html(numberCorrect);

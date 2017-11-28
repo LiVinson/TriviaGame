@@ -15,6 +15,7 @@ body {
     height:300px;
     position:relative;
     opacity: .9;
+    border: solid 4px;
 }
 
 /*Word trivia in logo  */
